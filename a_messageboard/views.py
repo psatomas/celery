@@ -32,4 +32,6 @@ def subscribe(request):
     messageboard = get_object_or_404(MessageBoard, id=1)
     if request.user not in messageboard.subscribers.all():
         messageboard.subscribers.add(request.user)
+    else:
+        messageboard.subscribers.remove(request.user)
     return redirect('messageboard')
