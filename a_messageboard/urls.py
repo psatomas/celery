@@ -3,4 +3,5 @@ from .views import *
 
 urlpatterns = [
     path('', messageboard_view, name='messageboard'),
+    path('subscribe/', subscribe, name='subscribe'),
 ]

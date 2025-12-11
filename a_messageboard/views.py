@@ -26,3 +26,10 @@ def messageboard_view(request):
         'form': form,
     }
     return render(request, 'a_messageboard/index.html', context)
+
+@login_required
+def subscribe(request):
+    messageboard = get_object_or_404(MessageBoard, id=1)
+    if request.user not in messageboard.subscribers.all():
+        messageboard.subscribers.add(request.user)
+    return redirect('messageboard')
