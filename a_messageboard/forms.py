@@ -7,5 +7,5 @@ class MessageCreateForm(ModelForm):
         model = Message
         fields = ['body']
         widgets = {
-            'body': forms.TextaInput(attrs={'placeholder': 'Post a message...', 'class': 'p-4 text-black', 'maxlength': '2000' }),
+            'body': forms.TextInput(attrs={'placeholder': 'Post a message...', 'class': 'p-4 text-black', 'maxlength': '2000' }),
         }
