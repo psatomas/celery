@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import EmailMessage
-from .models import *
-from .forms import *
+from .models import MessageBoard
+from .forms import MessageCreateForm
 
 @login_required 
 def messageboard_view(request):
