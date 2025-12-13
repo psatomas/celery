@@ -165,3 +165,5 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 
 ACCOUNT_LOGIN_METHODS = {'email', 'username'}
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
