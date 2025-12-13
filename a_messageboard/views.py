@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import EmailMessage
+import threading
 from .models import MessageBoard
 from .forms import MessageCreateForm
 
@@ -41,8 +42,13 @@ def send_email(message):
     messageboard = message.messageboard
     subscribers = messageboard.subscribers.all()
 
-    for user in subscribers:
+    for subscriber in subscribers:
         subject = f'New message from {message.author.username}'
         body = f'{message.author.profile.name}: {message.body}\n\nRegards from\nMy Message Board'
-        email = EmailMessage(subject, body, to=[user.email])
+
+        email_thread = threading.Thread(target=send_email_thread, args=(subject, body, subscriber))
+        email_thread.start()
+
+def send_email_thread(subject, body, subscriber):
+        email = EmailMessage(subject, body, to=[subscriber.email])
         email.send()
